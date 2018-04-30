@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {StyleSheet, Text, View } from 'react-native'
-const styles = require('../styles')
+import styles from '../styles'
 
 export default class StatusBar extends Component {
     render() {
@@ -8,7 +8,7 @@ export default class StatusBar extends Component {
             <View>
                 <View styles={styles.statusbar} />
                 <View styles={styles.navbar}>
-                    <Text styles={styles.navbarTitle}>{this.props.title}</Text>
+                    <Text styles={styles.navbarTitle}>Couponer</Text>
                 </View>
             </View>
         )
