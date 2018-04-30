@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, ListView, TouchableHighlight, AlertIOS } from 'react-native'
-import styles from './styles'
+import { styles, constants } from './styles'
 
 //COMPONENTS
 import ActionButton from './components/ActionButton'
@@ -13,9 +13,10 @@ const firebaseConfig = {
   apiKey: "AIzaSyDHndLmDhxET-Q74ZivpuNPQqex3knh4FU",
   authDomain: "couponer-87cbc.firebaseapp.com",
   databaseURL: "https://couponer-87cbc.firebaseio.com",
-  projectId: "couponer-87cbc",
-  storageBucket: "couponer-87cbc.appspot.com",
-  messagingSenderId: "959778964098"
+  // projectId: "couponer-87cbc",
+  storageBucket: "",
+  // storageBucket: "couponer-87cbc.appspot.com",
+  // messagingSenderId: "959778964098"
 }
 const firebaseApp = firebase.initializeApp(firebaseConfig)
 
@@ -32,30 +33,15 @@ export default class App extends Component {
 
 
     // Create Realtime Database reference as a property in the constructor
-    this.itemsRef = firebaseApp.database().ref();
+    this.itemsRef = this.getRef().child('items')
+    // this.addItem = this._addItem.bind(this)
+    this._renderItem = this._renderItem.bind(this)
 
   }
 
   //METHODS
-  _renderItem(item) {
-    const onPress = () => {
-      AlertIOS.alert(
-        'Complete',
-        null,
-        [
-          {
-            text: 'Complete',
-            onPress: text => this.itemsRef.child(item._key).remove()
-          }, {
-            text: 'Cancel', 
-            onPress: text => console.log('Cancelled')
-          }
-        ]
-      )
-    }
-    return (
-      <ListItem item={item} onPress={onPress} />
-    )
+  getRef() {
+    return firebaseApp.database().ref();
   }
 
   // creates a value listener for all grocery items. Whenever an item is added, changed, or removed, you’ll get the entire result set back as a DataSnapshot, from the Firebase SDK. 
@@ -81,6 +67,56 @@ export default class App extends Component {
     })
   }
 
+  _addItem() {
+    AlertIOS.prompt(
+      // the title of the alert box and an optional message
+      'Add New Item',
+      null,
+      // an array that specifies the buttons available to the user.
+      [
+        {
+          text: 'Cancel', 
+          onPress: () => console.log('Cancel Pressed'), style: 'cancel'
+        },
+        {
+          // To add an item, create an object in the buttons array. 
+          // This object can add items in the onPress callback. 
+          // The callback returns the text the user has entered. Use this text to .push() a new child onto the /items location.
+          text: 'Add',
+          onPress: (text) => {
+            this.itemsRef.push({ title: text })
+          }
+        },
+      ],
+      // type of input
+      'plain-text'
+    );
+  }
+
+  _renderItem(item) {
+
+    const onPress = () => {
+      AlertIOS.alert(
+        'Complete',
+        null,
+        [
+          {
+            text: 'Complete', 
+            onPress: (text) => this.itemsRef.child(item._key).remove()
+          },
+          {
+            text: 'Cancel', 
+            onPress: (text) => console.log('Cancelled')
+          }
+        ]
+      );
+    };
+
+    return (
+      <ListItem item={item} onPress={onPress} />
+    );
+  }
+
   componentDidMount() {
     this.listenForItems(this.itemsRef)
   }
@@ -90,8 +126,8 @@ export default class App extends Component {
       <View style={styles.container}>
         <StatusBar title='Couponer'/>
         <ListView 
-          datasource={this.state.dataSource}
-          renderrow={this._renderItem.bind(this)}
+          dataSource={this.state.dataSource}
+          renderRow={this._renderItem}
           enableEmptySections={true}
           style={styles.listview}
         />
@@ -99,4 +135,6 @@ export default class App extends Component {
       </View>
     )
   }
+
+
 }

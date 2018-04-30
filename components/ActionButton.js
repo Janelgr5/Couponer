@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, TouchableHighlight } from 'react-native'
-const styles = require('../styles')
-const constants = styles.constants
+import { styles, constants } from '../styles'
 
 export default class ActionButton extends Component {
     render() {

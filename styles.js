@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
     container: {
         backgroundColor: '#f2f2f2',
         flex: 1,
+        paddingTop: 20
     },
 
     listview: {
@@ -47,7 +48,8 @@ export const styles = StyleSheet.create({
     navbarTitle: {
         color: '#444',
         fontSize: 16,
-        fontWeight: "500"
+        fontWeight: "500",
+        textAlign: 'center'
     },
 
     statusbar: {
