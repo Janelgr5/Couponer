@@ -1,12 +1,12 @@
 import  { StyleSheet } from 'react-native'
 
 export const constants = {
-    actionColor: '#24CE84'
+    actionColor: '#ff00ff'
 }
 
 export const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#f2f2f2',
+        backgroundColor: '#000000',
         flex: 1,
         paddingTop: 20
     },
@@ -16,8 +16,8 @@ export const styles = StyleSheet.create({
     },
 
     li: {
-        backgroundColor: '#fff',
-        borderBottomColor: '#eee',
+        backgroundColor: '#000000',
+        borderBottomColor: '#000000',
         borderColor: 'transparent',
         borderWidth: 1,
         paddingLeft: 16,
@@ -30,31 +30,28 @@ export const styles = StyleSheet.create({
     },
 
     liText: {
-        color: '#333',
+        color: '#ffffff',
         fontSize: 16,
     },
 
     navbar: {
         alignItems: 'center',
-        backgroundColor: '#fff',
-        borderBottomColor: '#eee',
+        backgroundColor: '#ee82ee',
+        borderBottomColor: '#ee82ee',
         borderColor: 'transparent',
         borderWidth: 1,
         justifyContent: 'center',
-        height: 44,
+        padding: 15,
+        height: 70,
         flexDirection: 'row'
     },
 
     navbarTitle: {
-        color: '#444',
-        fontSize: 16,
-        fontWeight: "500",
+        color: '#000000',
+        fontSize: 30,
+        fontWeight: 'bold',
+        fontFamily: 'Georgia',
         textAlign: 'center'
-    },
-
-    statusbar: {
-        backgroundColor: '#fff',
-        height: 22,
     },
 
     center: {
@@ -62,8 +59,10 @@ export const styles = StyleSheet.create({
     },
 
     actionText: {
-        color: '#fff',
+        color: '#000000',
+        fontWeight: 'bold',
         fontSize: 16,
+        fontFamily: 'Georgia',
         textAlign: 'center',
     },
 
