@@ -97,11 +97,11 @@ export default class App extends Component {
 
     const onPress = () => {
       AlertIOS.alert(
-        'Complete',
+        'Purchase',
         null,
         [
           {
-            text: 'Complete', 
+            text: 'Purchase', 
             onPress: (text) => this.itemsRef.child(item._key).remove()
           },
           {
