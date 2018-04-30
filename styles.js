@@ -8,7 +8,6 @@ export const styles = StyleSheet.create({
     container: {
         backgroundColor: '#000000',
         flex: 1,
-        paddingTop: 20
     },
 
     listview: {
